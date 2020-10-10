@@ -1,11 +1,9 @@
 var disqusEmbed = 'https://wenjun.disqus.com/embed.js';
 var pathname = location.pathname;
-
 window.disqus_config = function () {
   this.page.url = location.href;
   this.page.identifier = pathname;
 };
-
 if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
   document.addEventListener('DOMContentLoaded', function () {
     const d = document,
@@ -17,38 +15,38 @@ if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
   });
 
   /* Share */
-  var windowWidth = 626,
-    windowHeight = 436;
-
-  var $window = window;
-  var docElem = $window.document.documentElement;
-  var screen = $window.screen;
-  var dualScreenLeft =
-    $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
-  var dualScreenTop =
-    $window.screenTop !== undefined ? $window.screenTop : screen.top;
-  var width = $window.innerWidth
-    ? $window.innerWidth
-    : docElem.clientWidth
-    ? docElem.clientWidth
-    : screen.width;
-  var height = $window.innerHeight
-    ? $window.innerHeight
-    : docElem.clientHeight
-    ? docElem.clientHeight
-    : screen.height;
-  var left = width / 2 - windowWidth / 2 + dualScreenLeft;
-  var top = height / 2 - windowHeight / 2 + dualScreenTop;
-
   function openSharer(shareUrl) {
+    var boxWidth = 626,
+      boxHeight = 436;
+
+    var $window = window;
+    var docElem = $window.document.documentElement;
+    var screen = $window.screen;
+    var dualScreenLeft =
+      $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
+    var dualScreenTop =
+      $window.screenTop !== undefined ? $window.screenTop : screen.top;
+    var width = $window.innerWidth
+      ? $window.innerWidth
+      : docElem.clientWidth
+      ? docElem.clientWidth
+      : screen.width;
+    var height = $window.innerHeight
+      ? $window.innerHeight
+      : docElem.clientHeight
+      ? docElem.clientHeight
+      : screen.height;
+    var left = width / 2 - boxWidth / 2 + dualScreenLeft;
+    var top = height / 2 - boxHeight / 2 + dualScreenTop;
+
     window.open(
       shareUrl,
       'v__sharer',
       'status=yes' +
         ',height=' +
-        windowWidth +
+        boxWidth +
         ',width=' +
-        windowHeight +
+        boxHeight +
         ',resizable=yes' +
         ',left=' +
         left +
