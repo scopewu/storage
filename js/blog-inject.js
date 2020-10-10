@@ -15,30 +15,30 @@ if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
   });
 
   /* Share */
+  var boxWidth = 626,
+    boxHeight = 436;
+
+  var $window = window;
+  var docElem = $window.document.documentElement;
+  var screen = $window.screen;
+  var dualScreenLeft =
+    $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
+  var dualScreenTop =
+    $window.screenTop !== undefined ? $window.screenTop : screen.top;
+  var width = $window.innerWidth
+    ? $window.innerWidth
+    : docElem.clientWidth
+    ? docElem.clientWidth
+    : screen.width;
+  var height = $window.innerHeight
+    ? $window.innerHeight
+    : docElem.clientHeight
+    ? docElem.clientHeight
+    : screen.height;
+  var left = width / 2 - boxWidth / 2 + dualScreenLeft;
+  var top = height / 2 - boxHeight / 2 + dualScreenTop;
+
   function openSharer(shareUrl) {
-    var boxWidth = 626,
-      boxHeight = 436;
-
-    var $window = window;
-    var docElem = $window.document.documentElement;
-    var screen = $window.screen;
-    var dualScreenLeft =
-      $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
-    var dualScreenTop =
-      $window.screenTop !== undefined ? $window.screenTop : screen.top;
-    var width = $window.innerWidth
-      ? $window.innerWidth
-      : docElem.clientWidth
-      ? docElem.clientWidth
-      : screen.width;
-    var height = $window.innerHeight
-      ? $window.innerHeight
-      : docElem.clientHeight
-      ? docElem.clientHeight
-      : screen.height;
-    var left = width / 2 - boxWidth / 2 + dualScreenLeft;
-    var top = height / 2 - boxHeight / 2 + dualScreenTop;
-
     window.open(
       shareUrl,
       'v__sharer',
