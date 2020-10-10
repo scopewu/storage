@@ -44,9 +44,9 @@ if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
       'v__sharer',
       'status=yes' +
         ',height=' +
-        boxWidth +
-        ',width=' +
         boxHeight +
+        ',width=' +
+        boxWidth +
         ',resizable=yes' +
         ',left=' +
         left +
