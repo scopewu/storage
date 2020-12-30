@@ -1,16 +1,85 @@
+var prevLoc = getLoc()
+var ticking
+
+var node = document.getElementById('post-comments')
+var windowHeight
+
+var threshold = 40
+
+// location helper
+
+function getLoc () {
+  return window.scrollY || window.pageYOffset
+}
+
+// debounce helpers
+
+function requestScroll () {
+  prevLoc = getLoc()
+  requestFrame()
+}
+
+function requestFrame () {
+  if (!ticking) {
+    window.requestAnimationFrame(() => check())
+    ticking = true
+  }
+}
+
+// offset helper
+
+function getOffset (node) {
+  return node.getBoundingClientRect().top + prevLoc
+}
+
+// in viewport helper
+
+function inViewport (node) {
+  var viewTop = prevLoc
+  var viewBot = viewTop + windowHeight
+
+  var nodeTop = getOffset(node)
+  var nodeBot = nodeTop + node.offsetHeight
+
+  var offset = (threshold / 100) * windowHeight
+
+  return (nodeBot >= viewTop - offset) && (nodeTop <= viewBot + offset)
+}
+
+function setSource (node) {
+  handlers(false)
+  
+  var s = document.createElement('script')
+  s.async = 1
+  s.src = 'https://utteranc.es/client.js'
+  s.setAttribute('repo', 'scopewu/wenjun.me-comments')
+  s.setAttribute('issue-term', 'pathname')
+  s.setAttribute('theme', 'github-light')
+  s.setAttribute('crossorigin', 'anonymous')
+
+  node.appendChild(s)
+}
+
+function handlers (flag) {
+  var action = flag
+    ? 'addEventListener'
+    : 'removeEventListener'
+
+  ;['scroll', 'resize'].forEach(event => window[action](event, requestScroll))
+}
+
+function check () {
+  windowHeight = window.innerHeight
+
+  inViewport(node) && setSource(node)
+
+  ticking = false
+}
+
 var pathname = location.pathname;
 
 if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
-  var d = document;
-  var s = d.createElement('script');
-  s.async = 1;
-  s.src = 'https://utteranc.es/client.js';
-  s.setAttribute('repo', 'scopewu/wenjun.me-comments');
-  s.setAttribute('issue-term', 'pathname');
-  s.setAttribute('theme', 'github-light');
-  s.setAttribute('crossorigin', 'anonymous');
-
-  (d.head || d.body).appendChild(s);
+  handlers(true);
 
   /* Share */
   function openSharer(shareUrl) {
