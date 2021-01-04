@@ -4,7 +4,7 @@ var ticking
 var node = document.getElementById('post-comments')
 var windowHeight
 
-var threshold = 40
+var threshold = 70
 
 // location helper
 
