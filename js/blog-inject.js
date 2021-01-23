@@ -80,6 +80,23 @@ var pathname = location.pathname;
 
 if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
   handlers(true);
+  
+  var toMe = document.getElementById('to-me');
+  if (toMe) {
+    toMe.innerText = '点击查看';
+
+    var m = 'scope';
+    m += 'wubgm'.replace(/b/, '@');
+    m += 'ail.';
+    m += 'com';
+
+    toMe.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      toMe.href = m;
+      toMe.innerText = m;
+    });
+  }
 
   /* Share */
   function openSharer(shareUrl) {
