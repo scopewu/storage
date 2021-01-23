@@ -78,25 +78,35 @@ function check () {
 
 var pathname = location.pathname;
 
-if (/\.html$/.test(pathname)) {
-  handlers(true);
-  
+try {
   var toMe = document.getElementById('to-me');
   if (toMe) {
-    toMe.innerText = '点击查看';
+    toMe.innerText = '点击查看邮箱';
 
     var m = 'scope';
     m += 'wubgm'.replace(/b/, '@');
     m += 'ail.';
     m += 'com';
+    var href = 'mai';
+    href += 'lto:' + m;
 
-    toMe.addEventListener('click', function (event) {
+    function showToMe(event) {
       event.preventDefault();
 
-      toMe.href = m;
+      toMe.href = href;
       toMe.innerText = m;
-    });
+
+      toMe.removeEventListener('click', showToMe);
+    }
+
+    toMe.addEventListener('click', showToMe);
   }
+} catch (e) {
+  console.log(e)
+}
+
+if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
+  handlers(true);
 
   /* Share */
   function openSharer(shareUrl) {
