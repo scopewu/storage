@@ -81,7 +81,7 @@ var pathname = location.pathname;
 try {
   var toMe = document.getElementById('to-me');
   if (toMe) {
-    toMe.innerText = '点击查看邮箱';
+    toMe.innerText = '点击查看';
 
     var m = 'scope';
     m += 'wubgm'.replace(/b/, '@');
