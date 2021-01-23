@@ -78,7 +78,7 @@ function check () {
 
 var pathname = location.pathname;
 
-if (/^\/\d{4}\/\d{1,2}\//.test(pathname)) {
+if (/\.html$/.test(pathname)) {
   handlers(true);
   
   var toMe = document.getElementById('to-me');
